@@ -1,0 +1,29 @@
+<h3 style="margin-top: 90px">Ölçü vahidləri</h3>
+<form method="post" action="">
+	<div class="form-group">
+		
+		<label for="title">Ölçü vahidinin adı</label>
+
+		<input type="text" id="title" name="name"  class="form-control">
+		
+		</div>
+		
+		
+
+	<input type="submit" class="btn btn-success" value="Ölçü vahidi yarat">
+
+</form>
+
+<table class="table table-striped" style="width:400px; margin-top: 80px;">
+
+	<?php foreach($data['pages']['vahid'] as $page_data) { ?>
+<tr><td><b><?=$page_data['name']?></b></td>
+		<td align="right">
+		
+		<a href="/admin/pages/editcat/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">edit</button></a>
+		<a href="/admin/pages/deletecat/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">delete</button></a>
+	
+	</td>
+<?php } ?>	
+
+</table>

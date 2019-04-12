@@ -1,0 +1,24 @@
+<h3>Messages</h3>
+<table class="table table-striped" style="width:100%">
+    
+    <tr>
+        <td style="width:5%">#</td>
+        <td style="width:10%">name</td>
+        <td style="width:25%">email</td>
+        <td style="width:50%">message</td>
+    </tr>
+    <?php
+    
+    foreach($data as $item){
+    
+    ?>
+    <td style="width:5%"><?=$item['id']?></td>
+        <td style="width:10%"><?=$item['name']?></td>
+        <td style="width:25%"><?=$item['email']?></td>
+        <td style="width:50%"><?=$item['message']?></td>
+    <?php
+    
+    }
+    ?>
+    
+</table>

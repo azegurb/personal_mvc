@@ -1,0 +1,151 @@
+<h3 style="margin-top: 90px">Passive Elanlar</h3>
+
+<table class="table table-striped" style="width:500px; margin-top: 3px;float: left !important; border: 1px solid">
+	<thead>
+<tr><th colspan=2><b><center>Adı</center></b></th><th>Tarix</th><th>Düzəliş et</th></tr>
+</thead>
+	<tbody>
+
+	<?php foreach($data['pages'][1] as $page_data) { ?>
+<tr><td><input type="checkbox" id="'.$page_data['id'].'"></td><td><b><?=$page_data['name']?></b></td><td><?=$page_data['tarix']?></td>
+		<td align="right">
+		
+		<a href="/admin/pages/editactiv/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">Redaktə et</button></a>
+		<a href="/admin/pages/deleteactiv/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Sil</button></a>
+	
+	</td>
+<?php } ?>	
+</tbody>
+	<tfoot>
+		<tr>
+			<td colspan=5>
+		<?php
+		
+		if($data['pages']['sehifele2'][1]>1){
+				for($i=1;$i<=$data['pages']['sehifele2'][1];$i++){
+				
+				echo '<a href="/admin/pages/activ/p/'.$i.'"><button class="btn btn-sm btn-primary" style="margin-right:8px">'.$i.'</button></a>';
+				
+				
+				}
+				
+		}
+		
+		?>
+		</td>
+			
+		</tr>
+		
+	</tfoot>
+</table>
+
+
+<table class="table table-striped aztable" style="width:500px;margin-bottom: 40px;margin-top: -37px;margin-left: 20px;float: right !important">
+	<thead style="border: none">
+		<tr><td colspan=3><h3 style="float: right;margin-bottom: 0px;margin-top: 0px">Aktiv Elanlar</h3></td></tr>
+<tr><th colspan=2><b><center>Adı</center></b></th><th>Tarix</th><th>Düzəliş et</th></tr>
+</thead>
+	<tbody>
+
+	<?php foreach($data['pages'][2] as $page_data) { ?>
+<tr><td><input type="checkbox" id="'.$page_data['id'].'"></td><td><b><?=$page_data['name']?></b></td><td><?=$page_data['tarix']?></td>
+		<td align="right">
+		
+		<a href="/admin/pages/editactiv/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">Redaktə et</button></a>
+		<a href="/admin/pages/deleteactiv/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Sil</button></a>
+	
+	</td>
+<?php } ?>	
+</tbody>
+	<tfoot>
+		<tr>
+			<td colspan=5>
+		<?php
+		if($data['pages']['sehifele1'][1]>1 && $data['pages']['sehifele1'][1]<=5){
+		
+				for($i=1;$i<=$data['pages']['sehifele1'][1];$i++){
+				
+					echo '<a href="/admin/pages/activ/a/'.$i.'"><button class="btn btn-sm btn-primary" style="margin-right:8px">'.$i.'</button></a>';
+				
+				
+				}
+			
+				if($data['pages']['sehifele1'][1]>=5){
+					
+					echo  '<a href="/admin/pages/activ/a/'.$i.'"><button class="btn btn-sm btn-primary" style="margin-right:8px">>></button></a>';
+								
+				}
+			
+		}
+		
+		else if($data['pages']['sehifele1'][1]>=5){
+		
+		
+				if($data['params']==""){
+				
+					for($i=1;$i<=6;$i++){
+					
+						echo '<a href="/admin/pages/activ/a/'.$i.'"><button class="btn btn-sm btn-primary azbtn" style="margin-right:8px">'.$i.'</button></a>';
+					
+					}
+				
+				}
+				
+				else {
+				if($data['params']!=1){
+					
+					$v=$data['params']-1;
+					
+					echo  '<a href="/admin/pages/activ/a/'.$v.'"><button class="btn btn-sm btn-primary" style="margin-right:8px"><</button></a>';
+					
+				}
+								
+					$x=$data['params']>5?$data['params']-5:$data['params']-($data['params']-1);
+					
+					if($data['params']+5>=$data['pages']['sehifele1'][1]){
+					
+						$y=$data['pages']['sehifele1'][1];
+					
+					}
+					else {
+					
+						$y=$data['params']+5;
+					
+					}
+					
+					for($i=$x;$i<=$y;$i++){
+					
+						if($i==$data['params']){
+						
+							echo '<a href="/admin/pages/activ/a/'.$i.'"><button class="btn btn-sm btn-warning azbtn" style="margin-right:8px">'.$i.'</button></a>';
+						
+						}
+						
+						else {
+						
+							echo '<a href="/admin/pages/activ/a/'.$i.'"><button class="btn btn-sm btn-primary azbtn" style="margin-right:8px">'.$i.'</button></a>';
+						
+						}
+					
+						
+					}
+				
+				
+				}
+				if($data['params']!=$data['pages']['sehifele1'][1]){
+					
+					$z=$data['params']+1;
+					
+					echo  '<a href="/admin/pages/activ/a/'.$z.'"><button class="btn btn-sm btn-primary" style="margin-right:8px">></button></a>';
+					
+				}
+		
+		}
+		
+		?>
+		</td>
+			
+		</tr>
+		
+	</tfoot>
+</table>

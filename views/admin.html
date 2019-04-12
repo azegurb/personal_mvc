@@ -1,0 +1,318 @@
+﻿    <html>
+        <head>
+            <title>
+                <?php Config::get('site_name');?>
+            </title>
+           <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<!-- Latest compiled and minified CSS -->
+			<script src="/js/admin.js"></script>
+			<link rel="stylesheet" href="/css/cs/style.css">
+				<script src="/js/jquery-1.11.3.js"></script>
+			<link rel="stylesheet" href="/css/bootstrap.min.css">
+			
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+		
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="/js/bootstrap.min.js"></script>
+			 <script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
+			 <script src="/js/jquery.chainedselect.js"></script>
+		
+		<script>
+	
+	var selDiv = "";
+	var storedFiles = [];
+	var files;
+	
+	$(document).ready(function() {
+		$("#files").on("change", handleFileSelect);
+		
+		selDiv = $("#selectedFiles"); 
+		$("#myForm").on("submit", handleForm);
+		
+		$("body").on("click", ".selFile", removeFile);
+		
+		$(".silsekil").on("click", function(e){
+			
+			e.preventDefault();
+			
+		//	alert(this.id);
+			
+			var elanid=this.id;
+			
+			$.ajax({
+						
+						type: "POST",
+																							
+						url: "/ajaxs/delimage",
+																			
+						data: "elanid="+elanid,
+						
+						success: function(res) {
+							
+													
+							$('.doldurp').html(res);
+							
+							
+						}
+						
+			})
+			
+			
+			
+		});
+		
+		
+	});
+		
+	function handleFileSelect(e) {
+	files = e.target.files;
+		var filesArr = Array.prototype.slice.call(files);
+		filesArr.forEach(function(f) {			
+
+			if(!f.type.match("image.*")) {
+				return;
+			}
+			storedFiles.push(f);
+			
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				var html = "<div><img src=\"" + e.target.result + "\" data-file='"+f.name+"' width='300px' class='selFile' title='Click to remove'>" + f.name + "<br clear=\"left\"/></div>";
+				selDiv.append(html);
+				
+			}
+			reader.readAsDataURL(f); 
+		});
+		
+	}
+		
+	function handleForm(e) {
+		e.preventDefault();
+		var data = new FormData();
+		
+		for(var i=0, len=storedFiles.length; i<len; i++) {
+			data.append('files', storedFiles[i]);	
+		}
+
+		data.append('imgtext', $('#imgtext').val());
+		var xhr = new XMLHttpRequest();
+	
+		xhr.open('POST', '/ajaxs/picture', true);
+		
+		xhr.onload = function(e) {
+			if(this.status == 200) {
+				console.log(e.currentTarget.responseText);	
+				alert(e.currentTarget.responseText + ' items uploaded.');
+			}
+		}
+		
+		xhr.send(data);
+	}
+		
+	function removeFile(e) {
+		var file = $(this).data("file");
+		for(var i=0;i<storedFiles.length;i++) {
+			if(storedFiles[i].name === file) {
+				storedFiles.splice(i,1);
+				
+				break;
+			}
+		}
+		$(this).parent().remove();
+	}
+	
+	$(document).ready(function() {
+	
+		$('select[id=cat]').chainSelect('#subcat','/ajaxs/secim', {
+					
+					
+		
+					before:function (target) {
+						
+					  $(target).css('visibility','hidden');
+					  
+					},
+					after:function (target) { 
+					 
+					  $(target).css('visibility','visible');
+					
+					},
+					
+					success:function(target) {
+						
+						alert("second success");
+					
+					}
+				});
+		
+	});
+	</script>
+
+        </head>
+        <body>
+		
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+					<div class="container">
+					  <div class="navbar-header">
+						<a class="navbar-brand" href="/admin/"><?php Config::get('site_name');?><?=__('lng.admin', 'Admin Bölməsi')?></a>
+					  </div>
+					  <div id="navbar" class="collapse navbar-collapse">
+						<?php  if(Session::get('login')) { ?>
+						<ul class="nav navbar-nav">
+						  <li class="active"><a href="/admin/pages/pictur">Şəkil yüklə</a></li>
+						  <li <?php if(App::getRouter()->getController()=='pages') {?> class='active' <?php } ?>><a href="/admin/pages/menu">Menu</a></li>
+						  <li <?php if(App::getRouter()->getController()=='contacts') {?> class='active' <?php } ?>><a href="/admin/pages/news">Xeberler</a></li>
+						 <li <?php if(App::getRouter()->getController()=='news') {?> class='active' <?php } ?>><a href="/admin/pages/newscategory">Xeber kateqoriyalari</a></li>
+
+						  <li><a href="/users/adminlogout/">Logout</a></li>
+
+						</ul>
+						
+						<?php } ?>
+					  </div><!--/.nav-collapse -->
+					</div>
+			</nav>
+			  
+				  <div class="container">
+			  
+					<div class="starter-template" style="float: left;">
+					
+					<?php if(Session::hasFlash()){ ?>
+					<div class="alert alert-info" role="alert">
+					
+					<?php Session::flash();?>
+					</div>
+					<?php } ?>
+					  <?=$data['content']?>
+				
+					</div>
+
+						   <script src="/zptree/utils/utils.js" type="text/javascript"></script>
+        <!-- basic Javascript file for the tree-->
+        <script src="/zptree/src/tree.js" type="text/javascript"></script>
+        <!-- basic CSS file for the tree-->
+        <link href="/zptree/themes/tree.css" rel="stylesheet" />
+        <!-- CSS file for the lines in the tree-->
+        <link href="/zptree/themes/tree-lines.css" rel="stylesheet" />
+        <!-- CSS file for icons for folders and files gnome style in the tree-->
+        <link href="/zptree/themes/kde1.css" rel="stylesheet" />
+        <script>
+        	function menu_init()
+        	{
+				var menu = new Zapatec.Tree("designtree",
+					{
+            			defaultIcons : "customIcon"
+            		}
+            	);
+            	//menu.loadPrefs();
+            	menu.onItemSelect = function(item_id)
+            	{
+            		
+            		document.all['act'].value=item_id;
+            		document.all['act_buttons'].style.display="";
+            		//menu.savePrefs();
+            		//alert(item_id);
+            	}
+        	}
+
+        </script>
+		<style>
+			.tree-item table.tree-table td.label span.label {
+    color: #2d2d2d !important;
+    font-family: Tahoma;
+    font-size: 14px !important;
+    line-height: 25px;
+}
+
+.tree-item table.tree-table td.label a {
+    color: #2d2d2d !important;
+    font-family: Tahoma;
+    font-size: 14px !important;
+    line-height: 25px;
+}
+
+.aztable tbody {
+	border-collapse: collapse;
+	border: 1px solid #c0c0c0;
+}
+.azbtn {
+	
+	    padding: 3px 5px;
+		font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+		</style>
+
+ <div class="lab" style="float: right; font-size:20px !important; margin-top: 150px;color:#000000; width:300px; position: static !important">
+	<ul id="designtree">
+						
+						<?php
+						
+						$str='';
+						if(is_array($add[1])){
+						
+						foreach($add[1] as $adad){
+						
+								$str.='<li style="color:#00000 !important">'.$adad['name'];
+								
+								if(isset($adad['sehife'])){
+								
+										$str.='<ul>';
+										
+										foreach($adad['sehife'] as $sehife){
+										
+										$str.='<li class="soz"><a href="/admin/pages/editsubcat/'.$sehife['id'].'">'.$sehife['name'].'</a>';
+										
+											if(isset($sehife['alt'])){
+											
+												$str.='<ul>';
+													
+													foreach($sehife['alt'] as $seh){
+												
+													$str.='<li class="soz"><a href="/admin/pages/editsubcat2/'.$seh['id'].'">'.$seh['name'].'</a></li>';
+																							
+													
+													}
+													
+													$str.='</ul></li>';
+											
+											}
+											
+											
+										}
+										
+										$str.='<li><a href="#" id="'.$adad['id'].'">Yenisini elave et</a></li>';
+										
+										$str.='</ul>';
+								
+								}
+								
+								$str.='</li>';
+												
+						}
+						
+					
+					}
+					echo $str;
+						
+						?>
+					</ul>
+ <!-- The Javascript code to initiate the tree-->
+        <script>
+        menu_init();
+
+ /*      if(document.all['expandable'].checked==true)
+    	{
+    		val=document.all['section'].value;
+    		document.all['section'].value='';
+    		document.all['section'].disabled=true;
+    	}
+*/
+    	</script>
+				  </div><!-- /.container --->
+				  			
+ </div>
+				    
+        </body>
+    </html>

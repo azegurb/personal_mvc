@@ -1,0 +1,86 @@
+<h3>Edit page</h3>
+<script src="/js/ckeditor/"></script>
+<form method="post" action="" enctype="multipart/form-data">
+
+	<input type="hidden" name="id" value="<?php echo $data['page']['id'];?>">
+	<input type="hidden" name="oldimage" value="<?php echo $data['page']['news_image'];?>">
+	<div class="form-group">
+		
+		<label for="title">Title</label>
+
+		<input type="text" id="title" name="title" value="<?php echo $data['page']['title'];?>" class="form-control">
+
+	</div>
+	
+	<div class="form-group">
+		
+		<label for="title">Şəkil</label>
+
+		<input type="file" id="newsimage" name="newsimage" value="" class="form-control">
+		<img type="file" src="/uploads/news/small_img/<?php echo $data['page']['news_image'];?>"  style="width:150px;height:100px;" class="form-control">
+
+	</div>
+	<div class="form-group">
+
+		<label for="title">Kateqoriya</label>
+
+		<?php echo createSelect($data['pages'][2], 'cat_id', $data['page']['news_category_id'], 'name');?>
+
+	</div>
+	<div class="form-group">
+
+		<label for="title">Editor</label>
+
+		<?php echo createSelect($data['pages'][3], 'editor_id', $data['page']['editor_id'], 'name');?>
+
+	</div>
+	<div class="form-group">
+
+		<label for="title">Qisa basliq</label>
+
+		<textarea type="file" id="short_name" rows="6" name="short_name"><?php echo $data['page']['short_name'];?></textarea>
+
+	</div>
+	<div class="form-group">
+		
+		<label for="content">Content</label>
+
+		<textarea id="content" name="name" class="form-control" rows="13"><?php echo $data['page']['name'];?></textarea>
+		
+		 <script type="text/javascript">
+			//<![CDATA[
+
+				// This call can be placed at any point after the
+				// <textarea>, or inside a <head><script> in a
+				// window.onload event handler.
+
+				// Replace the <textarea id="editor"> with an CKEditor
+				// instance, using default configurations.
+				function CkEditorURLTransfer(url) 
+{
+    window.parent.CKEDITOR.tools.callFunction(1, url, '');
+    $('#cke_111_textInput').val(url);
+  
+}
+				CKEDITOR.replace( 'name',
+                {
+                    /*filebrowserBrowseUrl :'/js/ckeditor/filemanager/browser/default/browser.html?Connector=http://agro.loc/js/ckeditor/filemanager/connectors/php/connector.php',
+                    filebrowserImageBrowseUrl : '/js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=http://agro.loc/js/ckeditor/filemanager/connectors/php/connector.php',
+                    filebrowserFlashBrowseUrl :'/js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=http://agro.loc/js/ckeditor/filemanager/connectors/php/connector.php',
+					filebrowserUploadUrl  :'/js/ckeditor/filemanager/connectors/php/upload.php?Type=File',
+					filebrowserImageUploadUrl : '/js/ckeditor/filemanager/connectors/php/upload.php?Type=Image',
+					filebrowserFlashUploadUrl : '/js/ckeditor/filemanager/connectors/php/upload.php?Type=Flash'*/
+					
+					filebrowserBrowseUrl: '/js/ckeditor/plugins/w3bdeveloper_uimages/index.php',
+        filebrowserWindowWidth: '860',
+        filebrowserWindowHeight: '660'
+				});
+				
+
+			//]]>
+			</script>
+
+	</div>
+	<input type="submit" class="btn btn-success">
+
+</form>

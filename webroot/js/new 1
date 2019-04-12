@@ -1,0 +1,64 @@
+
+                $(document).ready(function() {
+                    var currentId = '';
+                    var headMenuId = ''
+                    var arr = Array();
+
+                    for(var i = 0; i < $(".trigger-mega-menu").length; i++) {
+                        arr[i] = "#t" + $(".trigger-mega-menu:nth-child(" + (i + 1) + ")").attr("id");
+                    }
+
+                    $(".trigger-mega-menu").mouseover(function() {
+                        $("#t" + $(this).attr("id")).css("display", "block");
+                        for(var i = 0; i < $(".trigger-mega-menu").length; i++) {
+                            if(("#t" + $(this).attr("id")) != arr[i]) {
+                                $(arr[i]).css("display", "none");
+                            }
+                        }
+                        currentId = $(this).attr("id");
+                    });
+
+
+                    $(".trigger-mega-menu a").mouseover(function() {
+                        headMenuId = $(this).attr("id");
+                        $("#" + headMenuId + " .united-for-mothers .for-mothers").css("color", "#642C8F");
+                        for(var i = 0; i < $(".trigger-mega-menu").length; i++) {
+                            var othersId = $(".trigger-mega-menu:nth-child(" + (i + 1) + ") a").attr("id");
+                            if(headMenuId != othersId) {
+                                $("#" + othersId + " .united-for-mothers").css("background", "linear-gradient(to bottom, #642C8F, #451D63)");
+                                $("#" + othersId + " .united-for-mothers .for-mothers").css("color", "white");
+                            }
+                        }
+                    });
+
+                    $(".header-menu, .center-united").mouseover(function() {
+                        $("#t" + currentId).css("display", "none");
+                        $("#" + headMenuId + " .united-for-mothers").css("background", "linear-gradient(to bottom, #642C8F, #451D63)");
+                        $("#" + headMenuId + " .united-for-mothers .for-mothers").css("color", "white");
+                    });
+
+                    $(".trigger-mega-menu:last a .united-for-mothers").mouseover(function() {
+                        $(".div-about-moms-and-babies").css("background", "linear-gradient(to bottom, #ffffff, #ffffff)");
+                    });
+                    $(".trigger-mega-menu:last a .united-for-mothers").mouseleave(function() {
+                        $(".div-about-moms-and-babies").css("background", "linear-gradient(to bottom, #642C8F, #451D63)");
+                    });
+                    $(".mega-menu:last").mouseover(function() {
+                        $(".div-about-moms-and-babies").css("background", "linear-gradient(to bottom, #ffffff, #ffffff)");
+                    });
+                    $(".mega-menu:last").mouseleave(function() {
+                        $(".div-about-moms-and-babies").css("background", "linear-gradient(to bottom, #642C8F, #451D63)");
+                    });
+
+                    $(".sub-menu-block a img").mouseover(function() {
+                        var id = $(this).attr("id");
+                        $(".sub-menu-block a img.#" + id).animate({"width": "85px", "height": "85px"}, 180);
+                        //$(".sub-menu-block ." + id).css("color", "rgb(100, 44, 143);");
+                    });
+                    $(".sub-menu-block a img").mouseleave(function() {
+                        var id = $(this).attr("id");
+                        $(".sub-menu-block a img.#" + id).animate({"width": "77px", "height": "77px"}, 180);
+                        //$(".sub-menu-block ." + id).css("color", "rgb(100, 44, 143);");
+                    });
+                });
+            

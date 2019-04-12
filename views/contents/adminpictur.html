@@ -1,0 +1,52 @@
+<style>
+    
+    .btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+</style>
+
+
+<form id="myForm">
+<table class="table table-striped" style="width:430px; margin-top: 80px;">
+<tr><td>Şəkil yüklə :</td><td>
+    
+    <div class="col-lg-6 col-sm-6 col-12">
+           
+            <span class="file-input btn btn-primary btn-file">
+                Yukle <input type="file" id="files" name="files" multiple>
+            </span>
+        </div>
+</td></tr>
+
+</table>
+<br>
+
+<div>
+    
+<button class="btn btn-sm btn-success" type="submit" id="gonder">Şəkil yüklə</button>
+  
+</div>
+</form>
+<div id="selectedFiles">
+    
+    
+</div>

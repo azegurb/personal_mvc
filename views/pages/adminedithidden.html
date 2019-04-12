@@ -1,0 +1,57 @@
+<h3>Edit page</h3>
+<script src="/js/ckeditor/"></script>
+<form method="post" action="">
+
+<input type="hidden" id="id" name="id" value="<?php echo $data['page']['id'];?>" class="form-control">
+
+	<div class="form-group">
+		
+		<label for="title">Title</label>
+
+		<input type="text" id="title" name="title" value="<?php echo $data['page']['name'];?>" class="form-control">
+
+	</div>
+	
+	<div class="form-group">
+		
+		<label for="content">Content</label>
+
+		<textarea id="content" name="mezmun" class="form-control" rows="13"><?php echo $data['page']['mezmun'];?></textarea>
+		
+		 <script type="text/javascript">
+			//<![CDATA[
+
+				// This call can be placed at any point after the
+				// <textarea>, or inside a <head><script> in a
+				// window.onload event handler.
+
+				// Replace the <textarea id="editor"> with an CKEditor
+				// instance, using default configurations.
+				function CkEditorURLTransfer(url) 
+{
+    window.parent.CKEDITOR.tools.callFunction(1, url, '');
+    $('#cke_111_textInput').val(url);
+  
+}
+				CKEDITOR.replace( 'mezmun',
+                {
+                    /*filebrowserBrowseUrl :'http://agro.loc/js/ckeditor/filemanager/browser/default/browser.html?Connector=http://agro.loc/js/ckeditor/filemanager/connectors/php/connector.php',
+                    filebrowserImageBrowseUrl : 'http://agro.loc/js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=http://agro.loc/js/ckeditor/filemanager/connectors/php/connector.php',
+                    filebrowserFlashBrowseUrl :'http://agro.loc/js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=http://agro.loc/js/ckeditor/filemanager/connectors/php/connector.php',
+					filebrowserUploadUrl  :'http://agro.loc/js/ckeditor/filemanager/connectors/php/upload.php?Type=File',
+					filebrowserImageUploadUrl : 'http://agro.loc/js/ckeditor/filemanager/connectors/php/upload.php?Type=Image',
+					filebrowserFlashUploadUrl : 'http://agro.loc/js/ckeditor/filemanager/connectors/php/upload.php?Type=Flash'*/
+					
+					filebrowserBrowseUrl: 'http://agro.loc/js/ckeditor/plugins/w3bdeveloper_uimages/index.php',
+        filebrowserWindowWidth: '860',
+        filebrowserWindowHeight: '660'
+				});
+				
+
+			//]]>
+			</script>
+
+	</div>
+	<input type="submit" class="btn btn-success">
+
+</form>

@@ -1,0 +1,34 @@
+<h3 style="margin-top: 90px">SOl menular</h3>
+<form method="post" action="">
+	<div class="form-group">
+		
+		<label for="title">SOl menyunun adı</label>
+
+		<input type="text" id="title" name="name"  class="form-control">
+		
+		</div>
+		
+		<div class="form-group">
+		
+		<label for="title">Sol menyu şəkli</label>
+
+		<input type="text" id="title" name="pic" class="form-control">
+		
+		</div>
+
+	<input type="submit" class="btn btn-success" value="Sol menu yarat">
+
+</form>
+<table class="table table-striped" style="width:400px; margin-top: 80px;">
+
+	<?php foreach($data['pages'][0] as $page_data) { ?>
+<tr><td><b><?=$page_data['name']?></b></td>
+		<td align="right">
+		
+		<a href="/admin/pages/editsolmenu/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">edit</button></a>
+		<a href="/admin/pages/deletesolmenu/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">delete</button></a>
+	
+	</td>
+<?php } ?>	
+
+</table>

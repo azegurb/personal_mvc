@@ -1,0 +1,36 @@
+<h3 style="margin-top: 90px;clear: both">Menular</h3>
+<form method="post" action="/admin/pages/savemenu">
+	<div class="form-group">
+		
+		<label for="title">Menyunun adı</label>
+
+		<input type="text" id="title" name="name"  class="form-control">
+		
+		</div>
+
+		<div class="form-group">
+		
+		<label for="title">Əsas menyu</label>
+
+		<?php echo createSelect($data['pages'][1], 'main_menu');?>
+		
+		</div>
+
+	<input type="submit" class="btn btn-success" value="Menu yarat">
+
+</form>
+<table class="table table-striped" style="width:400px; margin-top: 80px;">
+	<tr><th>Menyu adi</th><th>Menyu URL</th><th>Action id</th><th></th></tr>
+
+	<?php foreach($data['pages'][0] as $page_data) { ?>
+<tr><td><b><?=$page_data['menu_name']?></b></td>
+	<td>/<?=$page_data['label']?></td>
+		<td align="right">
+		
+		<a href="/admin/pages/editmenu/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">edit</button></a>
+		<a href="/admin/pages/deletemenu/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">delete</button></a>
+	
+	</td>
+<?php } ?>	
+
+</table>

@@ -1,0 +1,98 @@
+<h3 style="margin-top: 70px; padding-bottom: 10px;">Xəbərlər</h3>
+<form method="post" action="" enctype="multipart/form-data">
+	<div class="form-group">
+		
+		<label for="title">Xəbərin adı</label>
+
+		<input type="text" id="title" name="title"  class="form-control">
+		
+		</div>
+	<div class="form-group">
+		
+		<label for="title">Şəkil</label>
+
+		<input type="file" id="newsimage" name="newsimage" value="" class="form-control">
+
+	</div>
+	<div class="form-group">
+
+		<label for="title">Kateqoriya</label>
+
+		<?php echo createSelect($data['pages'][2], 'cat_id', null, 'name');?>
+
+	</div>
+	<div class="form-group">
+
+		<label for="title">Editor</label>
+
+		<?php echo createSelect($data['pages'][3], 'editor_id', null, 'name');?>
+
+	</div>
+
+	<div class="form-group">
+
+		<label for="title">Qisa basliq</label>
+
+		<textarea type="file" id="shortname" rows="13" name="short_name" value="" class="form-control"></textarea>
+
+	</div>
+	
+	<div class="form-group">
+		
+		<label for="content">Kontent</label>
+
+		<textarea id="content" name="name" class="form-control" rows="13"></textarea>
+		
+		 <script type="text/javascript">
+			//<![CDATA[
+
+				// This call can be placed at any point after the
+				// <textarea>, or inside a <head><script> in a
+				// window.onload event handler.
+
+				// Replace the <textarea id="editor"> with an CKEditor
+				// instance, using default configurations.
+				function CkEditorURLTransfer(url) 
+{
+    window.parent.CKEDITOR.tools.callFunction(1, url, '');
+    $('#cke_111_textInput').val(url);
+  
+}
+				CKEDITOR.replace( 'name',
+                {
+                    /*filebrowserBrowseUrl :'http://polo.mm/js/ckeditor/filemanager/browser/default/browser.html?Connector=http://polo.mm/js/ckeditor/filemanager/connectors/php/connector.php',
+                    filebrowserImageBrowseUrl : 'http://polo.mm/js/ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=http://polo.mm/js/ckeditor/filemanager/connectors/php/connector.php',
+                    filebrowserFlashBrowseUrl :'http://polo.mm/js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=http://polo.mm/js/ckeditor/filemanager/connectors/php/connector.php',
+					filebrowserUploadUrl  :'http://polo.mm/js/ckeditor/filemanager/connectors/php/upload.php?Type=File',
+					filebrowserImageUploadUrl : 'http://polo.mm/js/ckeditor/filemanager/connectors/php/upload.php?Type=Image',
+					filebrowserFlashUploadUrl : 'http://polo.mm/js/ckeditor/filemanager/connectors/php/upload.php?Type=Flash'*/
+					
+					filebrowserBrowseUrl: '/js/ckeditor/plugins/w3bdeveloper_uimages/index.php',
+        filebrowserWindowWidth: '860',
+        filebrowserWindowHeight: '660'
+				});
+				
+
+			//]]>
+			</script>
+	</div>
+		
+		
+
+	<input type="submit" class="btn btn-success" value="Kateqoriya Yarat">
+
+</form>
+
+<table class="table table-striped" style="width:400px; margin-top: 80px;">
+
+	<?php foreach($data['pages'][1] as $page_data) { ?>
+<tr><td><b><?=$page_data['short_name']?></b></td>
+		<td align="right">
+		
+		<a href="/admin/pages/editnews/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">edit</button></a>
+		<a href="/admin/pages/deletenews/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">delete</button></a>
+	
+	</td>
+<?php } ?>	
+
+</table>

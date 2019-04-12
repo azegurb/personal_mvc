@@ -1,0 +1,41 @@
+<h3>Edit page</h3>
+<script src="/js/ckeditor/"></script>
+<form method="post" action="">
+
+	<input type="hidden" name="id" value="<?php echo $data['page']['id'];?>">
+
+	<!--<div class="form-group">
+		
+		<label for="alias">Alias</label>
+
+		<input type="text" id="alias" name="alias" value="<?php echo $data['page']['alias'];?>" class="form-control">
+
+	</div>
+	-->
+	<div class="form-group">
+		
+		<label for="title">Title</label>
+
+		<input type="text" id="title" name="title" value="<?php echo $data['page']['title'];?>" class="form-control">
+
+	</div>
+	
+	<div class="form-group">
+		
+		<label for="content">Content</label>
+
+		<input id="content" name="name" class="form-control" value="<?php echo $data['page']['name'];?>">
+		
+	</div>
+	
+	<div class="form-group">
+		
+		<label for="is_published">Is published</label>
+
+		<input type="checkbox" id="is_published" name="is_published" <?php if($data['page']['content']){?> checked="checked" <?php } ?>>
+
+	</div>
+	
+	<input type="submit" class="btn btn-success">
+
+</form>

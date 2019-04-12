@@ -1,0 +1,260 @@
+<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="left-frame_in">
+							
+							<ul class="list-unstyled">
+						<?php
+								
+						foreach($data['pages'][0] as $seh){
+						
+									if($seh['href']!=""){
+									
+									echo '<li><a href="'.$seh['href'].'" target="_blank"><img src="/img/'.$seh['qeyd'].'"><h3>'.$seh['name'].'</h3></a></li>';
+						
+									
+									}
+									else {
+									
+									echo '<li><a href="/pages/leftmenu/'.$seh['id'].'"><img src="/img/'.$seh['qeyd'].'"><h3>'.$seh['name'].'</h3></a></li>';
+						
+									
+									}
+					}
+						?>
+							
+							</ul>
+						</div>
+					</div>	
+					
+					<div class="col-md-8">
+						
+						<div class="categoria_in2" style="background: #c0c0c0">
+									
+						<?php
+							
+						if(is_array($data['page']['result'])){	
+							
+									foreach($data['page']['result'] as $elan){
+						
+												$sekil=$elan['picname'];
+												
+												echo '<div class="elan_forma_1"><img width="148px" height="130px" src="/'.$sekil.'">';
+												
+												echo '<h4>'.$elan['elan_name'].'</h4>';
+												
+												echo '<div class="cost_more">
+															<h4 class="text-red text-bold f-left">'.$elan['price'].'</h4>
+															<a href="/pages/elan/'.$elan['elan_ad'].'" class="btn btn-success f-right">Ətraflı</a>					
+														</div></div>';
+						
+									}
+						
+						}	
+						
+						?>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section>
+			<div class="container_block">
+				<h2>ƏN ÇOX BAXILANLAR</h2>
+			
+				<div class="container_block_in">
+					<div id="owl-demo" class="owl-carousel owl-theme">
+						
+						<?php
+						
+						foreach($data['pages']['elan'] as $elan){
+						
+						$sekil=$elan['picname'];
+						echo '<div class="item"><div class="elan_forma"><img width="148px" height="120px" src="/'.$sekil.'">';
+						echo '<h4>'.$elan['elan_name'].'</h4>';
+						echo '<div class="cost_more">
+									<h4 class="text-red text-bold f-left">'.$elan['price'].'</h4>
+									<a href="/pages/elan/'.$elan['elan_ad'].'" class="btn btn-success f-right">Ətraflı</a>					
+								</div></div></div>';
+						
+						}
+						
+						
+						?>
+						
+					  
+					</div>
+					 
+					<div class="customNavigation">
+					  <a class="btn prev glyphicon glyphicon-backward"></a>
+					  <a class="btn next glyphicon glyphicon-forward"></a>
+					  <a class="btn play glyphicon glyphicon-pause"></a>
+					  <a class="btn stop glyphicon glyphicon-stop"></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section>
+			<div class="categoria">
+			
+				<div class="categoria_block" id="n1">
+						
+				
+				</div>
+				
+				<div class="categoria_block" id="n2">
+						
+					<h3 class="text-left text-bold">HEYVANLAR</h3>
+					
+					
+				</div>
+				
+				
+				
+				
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="categoria_in1">
+								<h2 class="text-bold">KATEQORİYALAR</h2>								
+								<div class="categoria-frame">
+												
+												<?php
+															$i=1;
+															
+															foreach($data['pages']['sol'] as $val){
+															
+																echo '<a href="/pages/cat/'.$val['id'].'#" class="smenu1"><div rel="'.$val['id'].'" id="bg_color'.$i.'" data-az="'.$seh['id'].'" class="categoria-frame_in"><img src="/img/'.$val['qeyd'].'"><h4>'.$val['name'].'</h4></div></a>';
+															
+																$i++;
+															}
+												
+												?>
+								</div>
+								
+							</div>
+						</div>	
+						
+						
+						
+						<div class="col-md-8">
+							<div class="categoria_in2">
+								<h2 class="text-bold">SON ELANLAR</h2>
+								
+								<?php
+						
+						foreach($data['pages']['elan'] as $elan){
+						
+						$sekil=$elan['picname'];
+						echo '<div class="elan_forma_1"><img width="148px" height="130px" src="/'.$sekil.'">';
+						echo '<h4>'.$elan['elan_name'].'</h4>';
+						echo '<div class="cost_more">
+									<h4 class="text-red text-bold f-left">'.$elan['price'].'</h4>
+									<a href="/pages/elan/'.$elan['elan_ad'].'" class="btn btn-success f-right">Ətraflı</a>						
+								</div></div>';
+						
+						}
+						
+						
+						?>
+								
+								<div class="clear-both"></div>
+								<div class="navig">
+								<!--	
+									<nav class="text-center">
+									<ul class="pagination"><?php
+									
+									$str=''; $strb=''; 	$stra=''; 
+									
+												if($data['pages']['sehifele'][1]>=2){
+												
+															$strb='<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+															$stra='<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+												
+												}
+												
+												for($i=1;$i<=$data['pages']['sehifele'][1];$i++){
+												
+												$str.='<li><a href="/pages/news/'.$i.'">'.$i.'</a></li>';
+												
+												}
+									
+												echo $strb.$str.$stra;
+									?>
+							  </ul>
+							</nav>-->
+									
+								</div>
+							</div>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</section>
+		<div class="clear-both"></div>
+		
+		<section>
+				<div class="container_block_sb">					
+				<div class="sorgu_block">
+						<div class="sorgu">
+									<div class="sorgu_header">
+										<h3>SORĞU</h3>
+									</div>
+							
+									<div id="container1" style="background: #DCCF73">
+										<div id="pollcontainer1" style="background: #DCCF73"></div>
+											<p id="loader1" >Yüklənir...</p>
+										</div>
+										<p class="text-center">Səsvermə resursun təkmilləşdirilməsi məqsədilə aparılır</p>
+									</div>
+						</div>
+				<div class="banner_block">				
+					<h3>BANNERLER</h3>
+				</div>
+			</div>
+		</section> 
+		<div class="clear-both"></div>
+		
+		
+		<section>
+			<div class="faydali_linkler">
+				<div class="faydali_linkler_in">
+					<h2 class="text-bold text-center">FAYDALI LİNKLƏR</h2>
+					<a href="http://www.agro.gov.az/" target="_blank"><img src="/img/fl_0.png"></a>
+					<a href="http://www.agrolizing.gov.az/" target="_blank"><img src="/img/fl_1.png"></a>
+					<a href="http://www.adau.edu.az/" target="_blank"><img src="/img/fl_2.png"></a>
+					<a href="http://www.dfnx.gov.az/" target="_blank"><img src="/img/fl_3.png"></a>
+					<a href="http://texnadzor.az/" target="_blank"><img src="/img/fl_4.png"></a>
+					<a href="http://www.vet.gov.az/" target="_blank"><img src="/img/fl_5.png"></a>
+					<a href="http://seleksiya.gov.az/" target="_blank"><img src="/img/fl_6.png"></a>
+					<a href="http://www.agrocredit.gov.az/" target="_blank"><img src="/img/fl_7.png"></a>
+					<a href=""><img src="/img/fl_8.png"></a>
+					<a href="http://www.aem.az/" target="_blank"><img src="/img/fl_9.png"></a>
+					<a href="http://rektk.az/" target="_blank"><img src="/img/fl_10.png"></a>
+				</div>							
+			</div>
+		</section> 
+		
+		<footer>
+			<div class="footer_above">
+				<div class="row">
+				  
+				  <?php
+						foreach($data['pages']['sol'] as $val){
+															
+																echo '<div class="col-md-2"><ul><li class="smenu1"><a rel="'.$val['id'].'" href="/pages/cat/'.$val['id'].'#getora">'.$val['name'].'</a></li></ul></div>';
+															
+																$i++;
+															}
+															?>
+				</div>
+
+			</div>
+			
+		

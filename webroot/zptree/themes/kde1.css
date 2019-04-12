@@ -1,0 +1,10 @@
+div.tree-item td.customIcon {
+	background: url("kde1/text_left.png") no-repeat 0 50%;
+}
+div.tree-item-expanded td.customIcon {
+	background: url("kde1/folder_open.png") no-repeat 0 50%;
+}
+div.tree-item-collapsed td.customIcon {
+	background: url("kde1/folder.png") no-repeat 0 50%;
+}
+

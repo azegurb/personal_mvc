@@ -1,0 +1,315 @@
+<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="left-frame_in">
+							<ul class="list-unstyled">
+								<?php
+									
+												foreach($data['pages'][1] as $seh){
+												
+												echo '<li><a href="/pages/leftmenu/'.$seh['id'].'"><img src="/img/'.$seh['qeyd'].'"><h3>'.$seh['name'].'</h3></a></li>';
+												
+												
+												}
+									
+									?>
+							</ul>
+						</div>
+					</div>	
+					
+					<div class="col-md-8">
+										
+						
+						<div class="right_block">
+						
+								
+							<?php
+						$elan=$data['page']['self'][0];
+						
+							?>
+						<div class="right_block_readmore">
+								<div class="contact_left">
+									<h3 class="text-bold text-center"><?=$elan['elan_name']?></h3>
+									<img class="text-center sekilaz" src="/<?=$elan['pic_largename']?>">
+									<h3 class="text-bold text-red">1200 AZN</h3>
+								</div>
+								
+								<div class="contact_right">
+									<h4 class="text-left"><b>Növü: </b><span class="text-red"><?=$elan['subcat_name']?></span></h4>
+									<h4 class="text-left"><b>Cinsi: </b><span class="text-red"><?=$elan['cins']?></span></h4>
+									<h4 class="text-left"><b>Yaşı: </b><span class="text-red"><?=$elan['age']?></span></h4>
+									<h4 class="text-left"><b>Sayı: </b><span class="text-red"><?=$elan['amount']?> <?=$elan['vahid']?></span></h4>
+									<h4 class="text-left"><b>Məhsuldarlığı: </b><span class="text-red"><?=$elan['pro']?></span></h4>
+									<h4 class="text-left"><b>Mənşəyi: </b><span class="text-red"><?=$elan['source']?></span></h4>
+									<h4 class="text-left"><b>Diri çəkisi: </b><span class="text-red"><?=$elan['diri']?> kq</span></h4>
+									<h4 class="text-left"><b>Köklük dərəcəsi: </b><span class="text-red"><?=$elan['fatty']?></span></h4>
+									<h4 class="text-left"><b>Çatdırılma forması: </b><span class="text-red"><?=$elan['deliver']?></span></h4>									
+								</div>
+								<div class="clear-both"></div>
+								<div class="note thumbnails">
+									<h3 class="text-bold text-center"><?=$elan['elan_mezmun']?></h3>
+									<p class="text-left"></p>
+									<?php
+									
+									foreach($data['page']['pic'] as $sekil){
+									
+									
+									echo '<a href="#"><img src="/'.$sekil['name'].'" rel="/'.$sekil['large_name'].'"  style="padding:2px;border:1px solid #c0c0c0; width:100px !important; margin-right:10px"></a>';
+									
+									}
+									
+									?>
+								</div>
+					
+						</div>		
+						
+						
+						
+					</div>
+					
+					
+				</div>
+			</div>
+		</section>
+		
+		<section>
+			<div class="container_block">
+				<h2>ƏN ÇOX BAXILANLAR</h2>
+				<div class="container_block_in">
+					<div id="owl-demo" class="owl-carousel owl-theme">
+						<?php
+						
+						foreach($data['pages']['elancox'] as $elan){
+						
+						$sekil=$elan['picname'];
+						echo '<div class="item"><div class="elan_forma"><img width="148px" height="120px" src="/'.$sekil.'">';
+						echo '<h4>'.$elan['elan_name'].'</h4>';
+						echo '<div class="cost_more">
+									<h4 class="text-red text-bold f-left">'.$elan['price'].'</h4>
+									<a href="/pages/elan/'.$elan['elan_ad'].'" class="btn btn-success f-right">Ətraflı</a>						
+								</div></div></div>';
+						
+						}
+						
+						
+						?>
+					</div>
+					 
+					<div class="customNavigation">
+					  <a class="btn prev glyphicon glyphicon-backward"></a>
+					  <a class="btn next glyphicon glyphicon-forward"></a>
+					  <a class="btn play glyphicon glyphicon-pause"></a>
+					  <a class="btn stop glyphicon glyphicon-stop"></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section>
+			<div class="categoria">
+			
+				<div class="categoria_block" id="n1">
+					<h3 class="text-left text-bold">HEYVANLAR</h3>
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/sheep1.jpg">
+						<a href=""><h4 class="text-bold">QOYUN</h4></a>
+					</div>
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/cow1.jpg">
+						<a href=""><h4 class="text-bold">İNƏK</h4></a>
+					</div>
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/Buffalo1.jpg">
+						<a href=""><h4 class="text-bold">CAMIŞ</h4></a>
+					</div>
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/sheep1.jpg">
+						<a href=""><h4 class="text-bold">QOYUN</h4></a>
+					</div>
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/cow1.jpg">
+						<a href=""><h4 class="text-bold">İNƏK</h4></a>
+					</div>
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/Buffalo1.jpg">
+						<a href=""><h4 class="text-bold">CAMIŞ</h4></a>
+					</div>
+				</div>
+				
+				
+				<div class="categoria_block" id="n2">
+						
+					<h3 class="text-left text-bold">HEYVANLAR</h3>
+					
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/egg.png">
+						<a href=""><h4 class="text-bold">YUMURTA</h4></a>
+					</div>
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/meat.png">
+						<a href=""><h4 class="text-bold">ƏT</h4></a>
+					</div>
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/egg.png">
+						<a href=""><h4 class="text-bold">YUMURTA</h4></a>
+					</div>
+					
+					<div class="categoria_block_in">
+						<img class="img-thumbnail" src="/img/meat.png">
+						<a href=""><h4 class="text-bold">ƏT</h4></a>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="categoria_in1">
+								<h2 class="text-bold">KATEQORİYALAR</h2>								
+								<div class="categoria-frame">
+									
+									<?php
+															$i=1;
+															
+															foreach($data['pages']['sol'] as $val){
+															
+																echo '<a href="/pages/cat/'.$val['id'].'#" class="smenu1"><div rel="'.$val['id'].'" id="bg_color'.$i.'" data-az="'.$seh['id'].'" class="categoria-frame_in"><img src="/img/'.$val['qeyd'].'"><h4>'.$val['name'].'</h4></div></a>';
+															
+																$i++;
+															}
+												
+												?>
+									
+								</div>
+								
+							</div>
+						</div>	
+						
+						
+						
+						<div class="col-md-8">
+							<div class="categoria_in2">
+								<h2 class="text-bold">SON ELANLAR</h2>
+								
+								<?php
+								
+								foreach($data['pages']['elancox'] as $elan){
+									
+									$sekil=$elan['picname'];
+									echo '<div class="elan_forma_1"><img width="148px" height="130px" src="/'.$sekil.'">';
+									echo '<h4>'.$elan['elan_name'].'</h4>';
+									echo '<div class="cost_more">
+												<h4 class="text-red text-bold f-left">'.$elan['price'].'</h4>
+												<a href="/pages/elan/'.$elan['elan_ad'].'" class="btn btn-success f-right">Ətraflı</a>							
+											</div></div>';
+									
+									}
+						?>
+								<div class="clear-both"></div>
+								<div class="navig">
+									<?php
+									if($data['pages']['sehifele1'][1]>1){
+									
+									?>
+									<nav class="text-center">
+									  <ul class="pagination">
+										<?php
+									
+										$str=''; $strb=''; 	$stra=''; 
+									
+												if($data['pages']['sehifele'][1]>=2){
+												
+															$strb='<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+															$stra='<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+												
+												}
+											
+											
+											
+												for($i=1;$i<=$data['pages']['sehifele1'][1];$i++){
+												
+												$str.='<li><a href="/pages/elanpage/'.$i.'">'.$i.'</a></li>';
+												
+												}
+											
+											
+												
+												echo $strb.$str.$stra;
+									?>
+									  </ul>
+									  
+									  
+									</nav>
+									
+									<?php
+									
+									}
+									
+									?>
+								</div>
+							</div>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</section>
+		<div class="clear-both"></div>
+		
+		<section>
+				<div class="container_block_sb">					
+				<div class="sorgu_block">
+						<div class="sorgu">
+									<div class="sorgu_header">
+										<h3>SORĞU</h3>
+									</div>
+							
+									<div id="container1" style="background: #DCCF73">
+										<div id="pollcontainer1" style="background: #DCCF73"></div>
+											<p id="loader1" >Yüklənir...</p>
+										</div>
+										<p class="text-center">Səsvermə resursun təkmilləşdirilməsi məqsədilə aparılır</p>
+									</div>
+						</div>
+				<div class="banner_block">				
+					<h3>BANNERLER</h3>
+				</div>
+			</div>
+		</section> 
+		<div class="clear-both"></div>
+		
+		
+		<section>
+			<div class="faydali_linkler">
+				<div class="faydali_linkler_in">
+					<h2 class="text-bold text-center">FAYDALI LİNKLƏR</h2>
+					<a href="http://www.agrolizing.gov.az/" target="_blank"><img src="/img/fl_1.png"></a>
+					<a href="http://www.adau.edu.az/" target="_blank"><img src="/img/fl_2.png"></a>
+					<a href="http://www.dfnx.gov.az/" target="_blank"><img src="/img/fl_3.png"></a>
+					<a href="http://texnadzor.az/" target="_blank"><img src="/img/fl_4.png"></a>
+					<a href="http://www.vet.gov.az/" target="_blank"><img src="/img/fl_5.png"></a>
+					<a href="http://seleksiya.gov.az/" target="_blank"><img src="/img/fl_6.png"></a>
+					<a href="http://www.agrocredit.gov.az/" target="_blank"><img src="/img/fl_7.png"></a>
+					<a href=""><img src="/img/fl_8.png"></a>
+					<a href="http://www.aem.az/" target="_blank"><img src="/img/fl_9.png"></a>
+					<a href="http://rektk.az/" target="_blank"><img src="/img/fl_10.png"></a>
+				</div>							
+			</div>
+		</section> 
+		
+		<footer>
+			<div class="footer_above">
+				<div class="row">
+				  
+				</div>
+
+			</div>

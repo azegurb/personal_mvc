@@ -1,0 +1,124 @@
+<h3 style="margin-top: 90px">Kateqoriyalar</h3>
+<div style="float: left">
+		<form method="post" action="" enctype="multipart/form-data">
+		
+		<div class="form-group">
+				
+				<label for="sub">Kateqoriyanin adı</label>
+		
+				<select id="sub" class="form-control" name="secim">
+					
+					<?php
+					
+					foreach($data['pages'][1] as $page){
+					
+					echo '<option value="'.$page['id'].'">'.$page['name'].'</option>';
+					
+					}
+					
+					
+					?>
+					
+				</select>
+				
+				</div>
+			<div class="form-group">
+				
+				<label for="title">Alt kateqoriyanin adı</label>
+		
+				<input type="text" id="title" name="name"  class="form-control">
+				
+				</div>
+			<div class="form-group">
+				
+				<label for="title">Alt kateqoriya üçün şəkil</label>
+		
+				<input type="file" id="title" name="sekil"  class="form-control">
+				
+				</div>
+				
+				<div class="form-group">
+						<input type="checkbox" name="fatty" value="fatty" style="margin-left: 10px"> Köklük dərəcəsi
+						<input type="checkbox" name="age" value="age" style="margin-left: 10px"> Yaşı
+						<input type="checkbox" name="diri" value="diri" style="margin-left: 10px"> Diri çəkisi
+						<input type="checkbox" name="cins" value="cins" style="margin-left: 10px"> Cinsi
+						<input type="checkbox" name="amount" value="amount" style="margin-left: 10px"> Sayı
+				</div>
+				 <div class="form-group form-group-lg">
+						<p><h3>Məhsuldarlığı təyin et</h3></p>
+						
+						<?php
+					
+					foreach($data['pages'][2] as $page){
+					
+						echo '<input type="checkbox" name="'.$page['id'].'" value="'.$page['id'].'" style="margin-left: 10px"> '.$page['name'];
+					
+					}
+					?>
+				</div>
+				<input type="submit" class="btn btn-success" name="sub" value="2-ci dərəcəli Kateqoriya Yarat">
+		
+		</form>
+</div>
+
+<div style="float: right; margin-left: 40px;">
+		<form method="post" action="">
+		
+		<div class="form-group">
+				
+				<label for="sub">Kateqoriyanin adı</label>
+		
+				<select class="form-control" id="cat" name="cat">
+					<option value="">Kateqoriyanı seç</option>
+					<?php
+					
+					foreach($data['pages'][1] as $page){
+					
+					echo '<option value="'.$page['id'].'">'.$page['name'].'</option>';
+					
+					}
+					
+					
+					?>
+					
+				</select>
+				
+				</div>
+								<div class="form-group">
+								<label for="sub">Alt kateqoriyanin adı</label>
+									<select class="form-control" id="subcat" name="subcat">
+										<option value="">Alt kateqoriyanı seç</option>
+										
+									</select>		
+								</div>
+			<div class="form-group">
+				
+				<label for="title">SUb 3 Kateqoriyanin adı</label>
+		
+				<input type="text" id="title" name="name"  class="form-control">
+				
+				</div>
+				
+				<div class="form-group">
+						<input type="checkbox" name="fatty" value="fatty" style="margin-left: 10px"> Köklük dərəcəsi
+						<input type="checkbox" name="age" value="age" style="margin-left: 10px"> Yaşı
+						<input type="checkbox" name="diri" value="diri" style="margin-left: 10px"> Diri çəkisi
+						<input type="checkbox" name="cins" value="cins" style="margin-left: 10px"> Cinsi
+						<input type="checkbox" name="amount" value="amount" style="margin-left: 10px"> Sayı
+				</div>
+		<div class="form-group form-group-lg">
+						<p><h3>Məhsuldarlığı təyin et</h3></p>
+						
+						<?php
+					
+					foreach($data['pages'][2] as $page){
+					
+						echo '<input type="checkbox" name="'.$page['id'].'" value="'.$page['id'].'" style="margin-left: 10px"> '.$page['name'];
+					
+					}
+					?>
+				</div>
+			<input type="submit" class="btn btn-success" name="sub3" value="3-cü dərəcəli Kateqoriya Yarat">
+		
+		</form>
+</div>

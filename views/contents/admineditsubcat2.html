@@ -1,0 +1,174 @@
+<h3 style="margin-top: 70px">Sub kateqoriyanı redaktə et</h3>
+<form method="post" action="" enctype="multipart/form-data">
+
+	<input type="hidden" name="id" value="<?php echo $data['page']['id'];?>">
+	<input type="hidden" name="sid" value="<?php echo $data['page']['sid'];?>">
+		<div class="form-group">
+				
+				<label for="sub">Kateqoriyanin adı</label>
+		
+				<select class="form-control" id="cat1" name="cat">
+					<option value="">Kateqoriyanı seç</option>
+					<?php
+					
+					foreach($data['pagecat'] as $page){
+					
+						if($data['page']['sid']==$page['id']){
+						
+							echo '<option value="'.$page['id'].'" selected="selected">'.$page['name'].'</option>';
+						
+						}
+						else {
+						
+							echo '<option value="'.$page['id'].'">'.$page['name'].'</option>';
+						
+						}
+					
+					}
+					
+					
+					?>
+					
+				</select>
+				
+				</div>
+		
+			<div class="form-group">
+				
+				<label for="sub">Alt kateqoriyanin adı</label>
+		
+				<select class="form-control" id="subcat1" name="subcat">
+					<option value="">Alt kateqoriyanı seç</option>
+					<?php
+					
+					foreach($data['pagesubcat'] as $page){
+					
+						if($data['page']['ssid']==$page['id']){
+						
+							echo '<option value="'.$page['id'].'" selected="selected">'.$page['name'].'</option>';
+						
+						}
+						else {
+						
+							echo '<option value="'.$page['id'].'">'.$page['name'].'</option>';
+						
+						}
+					
+					}
+					
+					
+					?>
+					
+				</select>
+				
+				</div>
+		<div class="form-group">
+				
+				<label for="title">Alt kateqoriya üçün şəkil</label>
+		
+				<input type="file" id="title" name="sekil" class="form-control">
+				<p id="doldurp">
+					
+					<?php if($data['page']['img']!=""){ ?>
+				<img src="/<?=$data['page']['img']?>" id="<?=$data['page']['id']?>" width="150px" class="silsekil" style="padding: 2px; border: 1px solid #c0c0c0">
+				
+				<?php } ?>
+				</p>
+				
+				</div>
+		<div class="form-group">
+			<?php
+			if($data['page']['fatty']=='fatty'){
+			
+			echo '<input type="checkbox" checked name="fatty" value="fatty" style="margin-left: 10px"> Köklük dərəcəsi';
+			
+			}
+			else {
+			
+			echo '<input type="checkbox" name="fatty" value="fatty" style="margin-left: 10px"> Köklük dərəcəsi';
+			
+			}
+			
+			if($data['page']['age']=='age'){
+			
+			echo '<input type="checkbox" checked name="age" value="age" style="margin-left: 10px"> Yaşı';
+			
+			}
+			else {
+			
+			echo '<input type="checkbox" name="age" value="age" style="margin-left: 10px"> Yaşı';
+			
+			}
+			
+			if($data['page']['diri']=='diri'){
+			
+			echo '<input type="checkbox" checked="checked" name="diri" value="diri" style="margin-left: 10px"> Diri çəkisi';
+			
+			}
+			else {
+			
+			echo '<input type="checkbox" name="diri" value="diri" style="margin-left: 10px"> Diri çəkisi';
+			
+			}
+			
+			if($data['page']['cins']=='cins'){
+			
+			echo '<input type="checkbox" checked="checked" name="cins" value="cins" style="margin-left: 10px"> Cinsi';
+			
+			}
+			else {
+			
+			echo '<input type="checkbox" name="cins" value="cins" style="margin-left: 10px"> Cinsi';
+			
+			}
+			
+			if($data['page']['amount']=='amount'){
+			
+			echo '<input type="checkbox" checked="checked" name="amount" value="amount" style="margin-left: 10px"> sayı';
+			
+			}
+			else {
+			
+			echo '<input type="checkbox" name="amount" value="amount" style="margin-left: 10px"> Sayı';
+			
+			}
+			
+			
+			
+			?>
+						<!--<input type="checkbox" name="fatty" value="fatty" style="margin-left: 10px"> Köklük dərəcəsi
+						<input type="checkbox" name="age" value="age" style="margin-left: 10px"> Yaşı
+						<input type="checkbox" name="diri" value="diri" style="margin-left: 10px"> Diri çəkisi
+						<input type="checkbox" name="cins" value="cins" style="margin-left: 10px"> Cinsi
+						<input type="checkbox" name="amount" value="amount" style="margin-left: 10px"> Sayı-->
+				</div>
+<div class="form-group form-group-lg">
+						<p><h3>Məhsuldarlığı təyin et</h3></p>
+						
+						<?php
+					
+					foreach($data['pages'][3][1] as $page){
+						if(in_array($page, $data['pages'][3][0])){
+							echo '<input type="checkbox" name="'.$page['id'].'" checked="checked" value="'.$page['id'].'" style="margin-left: 10px"> '.$page['name'];
+						
+						}
+						else {
+						
+						echo '<input type="checkbox" name="'.$page['id'].'" value="'.$page['id'].'" style="margin-left: 10px"> '.$page['name'];
+						
+						
+						}
+					}
+					?>
+				</div>
+	<div class="form-group">
+		
+		<label for="content">kateqoriyanın adı</label>
+
+		<input id="content" name="name" class="form-control" value="<?php echo $data['page']['name'];?>">
+		
+	</div>
+	<input type="submit" class="btn btn-success" style="margin-right: 20px">
+	<a href="/admin/pages/deletesubcat/<?=$data['page']['id'];?>" class="btn btn-success">SIl</a>
+
+</form>

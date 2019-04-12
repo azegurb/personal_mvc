@@ -1,0 +1,383 @@
+<h3>Edit page</h3>
+<style>
+	.fileUpload input.upload {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.fileUpload {
+    margin: 10px;
+    overflow: hidden;
+    position: relative;
+}
+	
+</style>
+<script src="/js/jquery.chainedselect.js"></script>
+<script>
+	
+	$( document ).ready(function() {
+	
+				$('select[id=subcat]').chainSelect('#subcat2','http://agro.loc/ajaxs/secim2?action1=subcat', {
+					
+					before:function (target) {
+						
+					  $(target).css('visibility','hidden');
+					  
+					},
+					after:function (target) { 
+					 
+					  $(target).css('visibility','visible');
+					
+					},
+					
+					success:function(target) {
+						
+						alert("second success");
+					
+					}
+				});
+	
+	
+	$('.selFileadmin').on('click', function(){
+		
+			var id=this.id, eid=this.getAttribute('rel');
+		
+				$.ajax({
+						
+						type: "POST",
+																							
+						url: "http://agro.loc/ajaxs/deletepic",
+																			
+						data: "id="+id+"&eid="+eid,
+												
+						success: function(res) {
+							
+						//	alert('silindi');
+							
+							document.getElementById('selectedFiles').innerHTML=res;
+							
+							
+						}
+						
+					})
+		
+	})
+	
+	$('.selFile1admin').on('click', function(e){
+		
+		
+			e.preventDefault();
+			var id=this.id, eid=this.getAttribute('rel');
+			
+			alert('eid'+eid)
+		
+				$.ajax({
+						
+						type: "POST",
+																							
+						url: "http://agro.loc/ajaxs/deletepic",
+																			
+						data: "id="+id+"&eid="+eid,
+												
+						success: function(res) {
+							
+						//	alert('silindi');
+							
+							document.getElementById('selectedFiles').innerHTML=res;
+							
+							
+						}
+						
+					})
+		
+	})
+	
+	$("#files1").on("change", handleFileSelect1);
+		
+			selDiv = $("#selectedFiles"); 
+			
+			$("#myForm1").on("submit", handleForm1);
+		
+			$("body").on("click", ".selFile", removeFile);
+			
+			$("body").on("click", ".selFile1", removeFile1);
+			
+			function handleFileSelect1(e) {
+					
+					var bool=false;
+					
+					var files = e.target.files;
+					
+					var filesArr = Array.prototype.slice.call(files);
+					
+					if(filesArr.length>5){
+				
+						alert('Sekil sayi 5 ededden cox olmamalidir');
+					
+					}
+					else {
+						
+						filesArr.forEach(function(f) {			
+		
+							if(!f.type.match("image.*")) {
+								return;
+							}
+							
+							if (storedFiles.length>=5) {
+								
+								alert('Şəkil sayı 5-i keçir');
+                            }
+							
+							else {
+								
+								storedFiles.push(f);
+						
+								var reader = new FileReader();
+								reader.onload = function (e) {
+									var html = "<div style='float:left; margin:10px'><img src=\"" + e.target.result + "\" data-file='"+f.name+"' width='100px' style='border:1px solid #c0c0c0; padding:2px;' class='selFile' title='Click to remove'><a href='#' class='selFile1'><img src='/img/del.png'></a></div>";
+									selDiv.append(html);
+									
+								}
+								
+								reader.readAsDataURL(f); 
+							}
+							
+					});
+						
+				}
+		
+			}
+		
+			function handleForm1() {
+			//	e.preventDefault();
+				data = new FormData();
+				data.append("cat", document.getElementById('cat').options[document.getElementById('cat').selectedIndex].value);
+				data.append("subcat", document.getElementById('subcat').options[document.getElementById('subcat').selectedIndex].value);
+				if (document.getElementById('ssid')) {
+				data.append("ssid", document.getElementById('ssid').options[document.getElementById('ssid').selectedIndex].value);
+                }
+				data.append("hid", $('#hid').val());
+				data.append("namen", $('#namen').val());
+				data.append("source", $('#source').val());
+				data.append("price", $('#price').val());
+				data.append("amount", $('#amount').val());
+				if (document.getElementById('vahid')) {
+                    data.append("vahid", document.getElementById('vahid').options[document.getElementById('vahid').selectedIndex].value);
+                }
+				data.append("diri", $('#diri').val());
+				data.append("cins", $('#cins').val());
+				data.append("fatty", $('#fatty').val());
+				data.append("age", $('#age').val());
+				data.append("qeyd", $('#qeyd').val());
+				data.append("deliver", $('#deliver').val());
+				if (document.getElementById('pro')) {
+					data.append("pro", document.getElementById('pro').options[document.getElementById('pro').selectedIndex].value);
+                }			
+				for(var i=0, len=storedFiles.length; i<len; i++) {
+					data.append('files[]', storedFiles[i]);	
+				}
+				
+				var xhr = new XMLHttpRequest();
+			
+				xhr.open('POST', 'http://agro.loc/ajaxs/editelan', true);
+				
+				xhr.onload = function(e) {
+					if(this.status == 200) {
+						console.log(e.currentTarget.responseText);	
+						alert(e.currentTarget.responseText + ' items uploaded.');
+					}
+				}
+				
+				xhr.send(data);
+			}
+				
+			function removeFile(e) {
+				var file = $(this).data("file");
+				for(var i=0;i<storedFiles.length;i++) {
+					if(storedFiles[i].name === file) {
+						storedFiles.splice(i,1);
+						
+						break;
+					}
+				}
+				$(this).parent().remove();
+			}
+			function removeFile1(e) {
+				e.preventDefault();
+				var file = $(this).prev().data("file");
+				for(var i=0;i<storedFiles.length;i++) {
+					if(storedFiles[i].name === file) {
+						storedFiles.splice(i,1);
+						
+						break;
+					}
+				}
+				$(this).parent().remove();
+				alert('silindi');
+			}
+	
+	
+		$('#editelan').on('click', function(){
+			
+			handleForm1();
+					
+						
+		});
+		
+		$('#aktivet').on('click', function(){
+			
+			var id=document.getElementById('hid').value;
+			
+					$.ajax({
+						
+						type: "POST",
+																							
+						url: "http://agro.loc/ajaxs/aktivet",
+																			
+						data: "id="+id,
+												
+						success: function(res) {
+							
+							alert('Elan aktiv edildi');
+							
+						}
+						
+					})
+					
+						
+		})
+		
+	
+	
+				
+	});
+				
+	
+	
+	
+</script>
+<div class="right_block">
+				
+				
+				
+				<div class="right_block_hedaer">
+								<h3 class="text-bold">ELAN YERLƏŞDİR</h3>
+				</div>
+					<form action="" method="post" enctype="multipart/form-data" id="myForm1">
+							<div class="right_block_in">
+								<div class="form-group">
+									<input type="text" id="hid" value="<?=$data['page']['catid'][0]['elan_ad']?>">
+									<select class="form-control input-sm" id="cat" name="cat">
+										<option value="">Kateqoriyanı seç</option>
+										
+										<?php
+										
+										$id=$data['page']['catid'][0]['cat_id'];
+										
+														foreach($data['pages'][1] as $page){
+														
+															if($id==$page['id']){
+															
+															echo '<option selected="selected" value="'.$page['id'].'">'.$page['name'].'</option>';
+															
+															}
+															else {
+															
+															echo '<option value="'.$page['id'].'">'.$page['name'].'</option>';
+															
+															}
+														
+																		
+														
+														}
+										
+										
+										?>
+									</select>		
+								</div>
+								<div class="form-group">
+									<select class="form-control input-sm" id="subcat" name="subcat">
+										<option value="">Alt Kateqoriyanı seç</option>
+										<?php
+										
+										$id=$data['page']['catid'][0]['subcat_id'];
+											foreach($data['page']['subcatid'] as $page){
+														
+															if($id==$page['id']){
+															
+															echo '<option selected="selected" value="'.$page['id'].'">'.$page['name'].'</option>';
+															
+															}
+															else {
+															
+															echo '<option value="'.$page['id'].'">'.$page['name'].'</option>';
+															
+															}
+															}
+															?>
+										
+									</select>		
+								</div>
+								
+							
+								
+								<div class="form-group">
+									<input type="text" id="namen" value="<?=$data['page']['catid'][0]['elan_name']?>" class="form-control input-sm" id="exampleInputText10" placeholder="Adı">
+								</div>
+									<div id="doldur"></div>
+									<div class="form-group" id="sec">
+									<!--<select class="form-control input-sm">
+										<option value="1">Məhsuldarlığı</option>
+										<option value="2">Ətlik</option>
+										<option value="3">Südlük</option>
+										<option value="4">Yunluq</option>
+									</select>	-->
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control input-sm" id="source" value="<?=$data['page']['catid'][0]['source']?>" placeholder="Mənşəyi">
+								</div>
+							<!--	<div class="form-group">
+									<input type="text" class="form-control input-sm" id="exampleInputText15" placeholder="Diri çəkisi">
+								</div>-->
+								<div class="form-group">
+									<input type="text" class="form-control input-sm" id="price" value="<?=$data['page']['catid'][0]['price']?>" placeholder="Qiyməti">
+								</div><div class="form-group">
+									<input type="text" class="form-control input-sm" id="deliver" value="<?=$data['page']['catid'][0]['deliver']?>" placeholder="Çatdırılma forması">
+								</div>
+								<div class="form-group">
+									<textarea class="form-control input-sm" rows="3" placeholder="Qeyd" id="qeyd"><?=$data['page']['catid'][0]['elan_mezmun']?></textarea>
+								</div>
+								<div class="fileUpload" style="width: 120px !important; padding: 5px">
+									 <span class="file-input btn btn-success btn-file">
+												Şəkil əlavə et </span><input type="file" class="upload" id="files1" name="files[]" multiple>
+											
+								</div>
+								<div id="selectedFiles">
+								<?php
+								
+									foreach($data['page']['sekiller'] as $sekil){
+									
+									
+									echo "<div style='float:left; margin:10px'><img src='/".$sekil['name']."' rel='".$sekil['eid']."' id='".$sekil['id']."' width='100px' style='border:1px solid #c0c0c0; padding:2px;' class='selFileadmin' title='Şəkli sil'>
+									<a href='#' class='selFile1admin' rel='".$sekil['eid']."' id='".$sekil['id']."'><img src='/img/del.png'></a></div>";
+									
+									
+									}
+									
+								?>
+    
+								</div>
+							<div class="modal-footer text-center">
+									 <button type="button" id="editelan" class="btn btn-lg btn-success btn-block">ELANI YENİLƏ</button>
+								<button type="button" id="aktivet" class="btn btn-lg btn-success btn-block">AKTİV ET</button>
+							</div>
+							</div>
+				</form>
+				
+				</div>				
+</form>

@@ -1,0 +1,55 @@
+<h3>Edit page</h3>
+<script src="/js/ckeditor/"></script>
+<form method="post" action="">
+
+	<input type="hidden" name="id" value="<?php echo $data['page']['id'];?>">
+
+	<div class="form-group">
+		
+		<label for="title">Title</label>
+
+		<input type="text" id="title" name="name" value="<?php echo $data['page']['menu_name'];?>" class="form-control">
+
+	</div>
+	<div class="form-group">
+
+		<label for="title">Kontent menyusu ucun ID-ni daxil et</label>
+
+		<?php echo createSelect($data['pages'][3], 'cont_id', $data['page']['fid'], 'name');?>
+
+	</div>
+	<div class="form-group">
+
+		<label for="title">Label</label>
+		<select name="label" class="form-control"><option value="0">Secin..</option>
+
+		<?php
+		$str='';
+		foreach ($data['pages'][2] as $d){
+
+		if($d['name']==$data['page']['label']){
+		$str.='<option selected value="'.$d['name'].'">'.$d['name'].'</option>';
+		}
+		else {
+		$str.='<option value="'.$d['name'].'">'.$d['name'].'</option>';
+		}
+
+		}
+
+			echo $str;
+			?>
+		</select>
+
+	</div>
+	<div class="form-group">
+
+		<label for="title">Esas menu</label>
+
+		<?php echo createSelect($data['pages'][1], 'main_menu', $data['page']['parent_id']);?>
+
+	</div>
+
+	
+	<input type="submit" class="btn btn-success">
+
+</form>
